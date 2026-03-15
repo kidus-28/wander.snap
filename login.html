@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Wander Snap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { display:flex; align-items:center; justify-content:center; min-height:100vh; }
+        .login-card { background:rgba(30,41,59,0.45); backdrop-filter:blur(20px); border:1px solid rgba(96,165,250,0.18); border-radius:28px; padding:4rem; width:100%; max-width:480px; box-shadow:0 20px 60px rgba(0,0,0,0.5); text-align:center; }
+        h1 { font-family:'Dancing Script',cursive; font-size:4.5rem; color:#60a5fa; margin-bottom:2rem; }
+        input { width:100%; padding:16px; margin:1rem 0; border-radius:12px; border:1px solid #60a5fa; background:rgba(255,255,255,0.08); color:white; font-size:1.1rem; }
+        button { width:100%; padding:16px; background:linear-gradient(90deg,#3b82f6,#60a5fa); color:white; border:none; border-radius:16px; font-size:1.2rem; cursor:pointer; margin-top:1.5rem; }
+        .error { color:#ef4444; margin-top:1rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">Wander Snap</div>
+    <div class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/explore.html">Explore</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/setting.html">Settings</a>
+        <a href="/login.html">Login</a>
+        <a href="/admin-dashboard.html">Admin</a>
+    </div>
+</nav>
+
+<div class="login-card">
+    <h1>Wander Snap</h1>
+    <form id="login-form">
+        <input type="text" id="username" placeholder="Username (admin)" required>
+        <input type="password" id="password" placeholder="Password (snap123)" required>
+        <button type="submit">Login</button>
+        <div id="error-msg" class="error"></div>
+    </form>
+</div>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+    const error = document.getElementById('error-msg');
+
+    if (user === 'admin' && pass === 'snap123') {
+        localStorage.setItem('isAdmin', 'true');
+        window.location.href = 'admin-dashboard.html';
+    } else {
+        error.textContent = 'Wrong username or password';
+    }
+});
+</script>
+</body>
+</html>

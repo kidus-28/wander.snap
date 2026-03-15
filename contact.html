@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact WanderWorld – Let's Make Magic Happen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -189,14 +190,17 @@
 <body>
 
 <nav>
-    <div class="logo">WanderWorld</div>
+    <div class="logo">Wander Snap</div>
     <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="destinations.html">Destinations</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="active">Contact</a>
-        <a href="profile.html">Profile</a>
+        <a href="/index.html">Home</a>
+        <a href="/explore.html">Explore</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/profile.html">Profile</a>
+        <a href="/setting.html">Settings</a>
+        <a href="/login.html">Login</a>
+        <a href="/admin-dashboard.html">Admin</a>
     </div>
 </nav>
 
@@ -248,6 +252,15 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     msg.textContent = 'Message sent successfully! We’ll reply soon ✨';
     this.reset();
 });
+
+// After successful send in contact form:
+if (result.success) {
+    let msgs = JSON.parse(localStorage.getItem('contactMessages')) || [];
+    msgs.push({ name, email, message, date: new Date().toISOString() });
+    localStorage.setItem('contactMessages', JSON.stringify(msgs));
+    showToast('Message sent! Admin will see it in dashboard ✨');
+}
+
 </script>
 
 <!-- ✨ BEAUTIFUL & ATTRACTIVE FOOTER ✨ -->
