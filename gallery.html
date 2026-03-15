@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Gallery – WanderWorld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family:'Inter',sans-serif; 
+            background:#0f172a; 
+            color:#e2e8f0; 
+        }
+        nav {
+            position:fixed; top:0; left:0; right:0;
+            background:rgba(15,23,42,0.8);
+            backdrop-filter:blur(12px);
+            padding:1.2rem 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:1000;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+        }
+        .logo { 
+            font-family:'Playfair Display',serif; 
+            font-size:1.9rem; 
+            color:#60a5fa; 
+            font-weight:700; 
+        }
+        .nav-links a { 
+            color:#cbd5e1; 
+            text-decoration:none; 
+            margin-left:2.2rem; 
+            font-weight:500; 
+            transition:color 0.3s; 
+        }
+        .nav-links a:hover, .nav-links a.active { color:#60a5fa; }
+
+        .hero {
+            height:100vh;
+            background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+        }
+        .hero::before {
+            content:''; 
+            position:absolute; 
+            inset:0; 
+            background:linear-gradient(to bottom, rgba(15,23,42,0.65), rgba(30,41,59,0.85));
+        }
+        .hero-content {
+            position:relative; 
+            z-index:2; 
+            max-width:900px; 
+            padding:0 5%;
+        }
+        .hero h1 {
+            font-family:'Playfair Display',serif;
+            font-size:5.2rem;
+            line-height:1.05;
+            margin-bottom:1rem;
+            color:white;
+            text-shadow:0 8px 32px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size:1.55rem;
+            font-weight:300;
+            opacity:0.95;
+        }
+
+        section { padding:120px 5% 80px; max-width:1400px; margin:0 auto; }
+        .gallery-grid {
+            column-count: 4;
+            column-gap: 1.8rem;
+        }
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 1.8rem;
+            transition: all 0.4s ease;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.06);
+            box-shadow: 0 25px 60px rgba(96,165,250,0.3);
+        }
+        @media (max-width: 1200px) { .gallery-grid { column-count: 3; } }
+        @media (max-width: 768px)  { .gallery-grid { column-count: 2; } }
+        @media (max-width: 480px)  { .gallery-grid { column-count: 1; } }
+
+        footer {
+            background:rgba(15,23,42,0.9);
+            padding:4rem 5% 2rem;
+            text-align:center;
+            border-top:1px solid rgba(96,165,250,0.1);
+        }
+        footer p { color:#94a3b8; font-size:0.95rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">WanderWorld</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">Profile</a>
+    </div>
+</nav>
+
+<div class="hero" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1920');">
+    <div class="hero-content">
+        <h1>Travel & Food Gallery</h1>
+        <p>Moments that inspire – captured forever</p>
+    </div>
+</div>
+
+<section>
+    <div class="gallery-grid" id="gallery"></div>
+</section>
+
+<footer>
+    <p>© 2026 WanderWorld • Crafted with wanderlust in Dire Dawa, Ethiopia 🌍</p>
+</footer>
+
+<script>
+const gallery = document.getElementById('gallery');
+
+for(let i = 1; i <= 36; i++) {
+    const category = ['travel', 'beach', 'mountain', 'city', 'food', 'sunset', 'nature', 'adventure'][i % 8];
+    gallery.innerHTML += `
+        <img src="https://picsum.photos/seed/travel${i}${category}/800/900" 
+             alt="Travel moment ${i}">
+    `;
+}
+</script>
+
+</body>
+</html>

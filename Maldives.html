@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maldives: Golden Sands & Crystal Waters – WanderWorld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family:'Inter',sans-serif; 
+            background:#0f172a; 
+            color:#e2e8f0; 
+        }
+        nav {
+            position:fixed; top:0; left:0; right:0;
+            background:rgba(15,23,42,0.85);
+            backdrop-filter:blur(12px);
+            padding:1.2rem 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:1000;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+        }
+        .logo { 
+            font-family:'Playfair Display',serif; 
+            font-size:1.9rem; 
+            color:#60a5fa; 
+            font-weight:700; 
+        }
+        .nav-links a { 
+            color:#cbd5e1; 
+            text-decoration:none; 
+            margin-left:2.2rem; 
+            font-weight:500; 
+            transition:color 0.3s; 
+        }
+        .nav-links a:hover, .nav-links a.active { color:#60a5fa; }
+
+        .hero {
+            height:100vh;
+            background:url('https://images.unsplash.com/photo-1506953823976-52e1aa586e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+        }
+        .hero::before {
+            content:''; 
+            position:absolute; 
+            inset:0; 
+            background:linear-gradient(to bottom, rgba(15,23,42,0.65), rgba(30,41,59,0.85));
+        }
+        .hero-content {
+            position:relative; 
+            z-index:2; 
+            max-width:900px; 
+            padding:0 5%;
+        }
+        .hero h1 {
+            font-family:'Playfair Display',serif;
+            font-size:4.8rem;
+            line-height:1.05;
+            margin-bottom:1rem;
+            color:white;
+            text-shadow:0 8px 32px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size:1.5rem;
+            font-weight:300;
+            opacity:0.95;
+        }
+
+        .story-container {
+            max-width:1100px;
+            margin:0 auto;
+            padding:100px 5% 80px;
+        }
+        .featured-image-top {
+            width:100%;
+            height:520px;
+            object-fit:cover;
+            border-radius:28px;
+            box-shadow:0 30px 80px rgba(0,0,0,0.6);
+            margin-bottom:3rem;
+        }
+        .blog-article {
+            background:rgba(30,41,59,0.45);
+            backdrop-filter:blur(20px);
+            border:1px solid rgba(96,165,250,0.18);
+            border-radius:28px;
+            padding:3.5rem 4rem;
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+        }
+        .story-title {
+            font-family:'Playfair Display',serif;
+            font-size:3.4rem;
+            line-height:1.15;
+            color:#e0f2fe;
+            margin-bottom:1.5rem;
+            text-align:center;
+        }
+        .lead-paragraph {
+            font-size:1.35rem;
+            line-height:1.8;
+            color:#94a3b8;
+            text-align:center;
+            max-width:800px;
+            margin:0 auto 3rem;
+        }
+        .story-content p {
+            font-size:1.15rem;
+            line-height:1.85;
+            margin-bottom:2rem;
+            color:#cbd5e1;
+        }
+        .pull-quote {
+            font-family:'Playfair Display',serif;
+            font-size:1.65rem;
+            font-style:italic;
+            color:#bae6fd;
+            text-align:center;
+            border-left:6px solid #60a5fa;
+            padding:2rem 3rem;
+            margin:3rem 0;
+            background:rgba(96,165,250,0.08);
+            border-radius:16px;
+        }
+        .tip-box {
+            background:rgba(96,165,250,0.1);
+            border:1px solid #60a5fa;
+            border-radius:20px;
+            padding:2rem;
+            margin:3rem 0;
+            font-size:1.1rem;
+        }
+        .story-actions {
+            display:flex;
+            gap:1.5rem;
+            justify-content:center;
+            margin-top:4rem;
+            flex-wrap:wrap;
+        }
+        .btn {
+            padding:16px 32px;
+            background:linear-gradient(90deg,#3b82f6,#60a5fa);
+            color:white;
+            border:none;
+            border-radius:16px;
+            font-size:1.1rem;
+            font-weight:600;
+            text-decoration:none;
+            transition:all 0.4s;
+        }
+        .btn:hover {
+            transform:translateY(-4px);
+            box-shadow:0 15px 40px rgba(59,130,246,0.5);
+        }
+        .back-btn {
+            background:rgba(255,255,255,0.1);
+            border:1px solid rgba(255,255,255,0.3);
+        }
+
+        footer {
+            background:rgba(15,23,42,0.9);
+            padding:4rem 5% 2rem;
+            text-align:center;
+            border-top:1px solid rgba(96,165,250,0.1);
+        }
+        footer p { color:#94a3b8; font-size:0.95rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">WanderWorld</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">Profile</a>
+    </div>
+</nav>
+
+<div class="hero" style="background-image: url('https://images.unsplash.com/photo-1514282401047-d3d2c6e5e8c6?auto=format&fit=crop&q=80&w=1920');">
+    <div class="hero-content">
+        <h1>Maldives</h1>
+        <p>Golden Sands & Crystal Waters</p>
+    </div>
+</div>
+
+<div class="story-container">
+    <img src="https://picsum.photos/seed/maldives-overwater-sunset/1400/620" alt="Maldives overwater villas at golden sunset" class="featured-image-top">
+    
+    <article class="blog-article">
+        <h1 class="story-title">Maldives: Where the Ocean Kisses the Sky & Time Forgets to Tick</h1>
+        
+        <p class="lead-paragraph">
+            The seaplane descends, turquoise water rushes up, and suddenly you're floating above paradise. Here, worries dissolve into the lagoon — one sunset at a time.
+        </p>
+
+        <div class="story-content">
+            <p>Overwater bungalow life: glass-floor views of reef sharks gliding below, steps straight into warm sea. Mornings mean paddleboarding across mirror-flat water as the sun ignites the horizon in pink and gold.</p>
+            
+            <p>Snorkel off your deck — clownfish darting, turtles drifting, mantas soaring like underwater kites. No crowds, just you and the ocean's quiet symphony.</p>
+
+            <blockquote class="pull-quote">
+                "In the Maldives, every sunset feels like the world painted it just for you. Pure, impossible beauty."
+            </blockquote>
+
+            <p>Afternoons fade into spa hammocks, coconut-oil massages with waves as soundtrack. Sunset ritual: cocktails on the deck, sky exploding in fire, dolphins leaping in silhouette.</p>
+
+            <p>Night snorkel under glowing plankton — swimming through underwater stars. Candlelit dinners on private sandbanks, toes in sand, stars above. Life stripped to sun, sea, silence.</p>
+
+            <div class="tip-box">
+                <strong>Pro Tip:</strong> Choose a resort with house reef for effortless snorkeling. May–Oct for fewer crowds (rain possible). Use reef-safe sunscreen — protect this paradise.
+            </div>
+
+            <p>The Maldives doesn't just show you beauty. It returns you to peace. Leave with salt on your skin and calm in your heart.</p>
+        </div>
+
+        <div class="story-actions">
+            <a href="index.html" class="btn back-btn">← Back to Home</a>
+            <a href="destinations.html" class="btn">Explore More Destinations</a>
+        </div>
+    </article>
+</div>
+
+<footer>
+    <p>© 2026 WanderWorld • Crafted with wanderlust in Dire Dawa, Ethiopia 🌍</p>
+</footer>
+
+</body>
+</html>

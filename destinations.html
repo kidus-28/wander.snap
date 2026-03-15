@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Dream Destinations – WanderWorld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            font-family:'Inter',sans-serif; 
+            background:#0f172a; 
+            color:#e2e8f0; 
+            line-height:1.6;
+        }
+        nav {
+            position:fixed; top:0; left:0; right:0;
+            background:rgba(15,23,42,0.8);
+            backdrop-filter:blur(12px);
+            padding:1.2rem 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:1000;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+        }
+        .logo { 
+            font-family:'Playfair Display',serif; 
+            font-size:1.9rem; 
+            color:#60a5fa; 
+            font-weight:700; 
+        }
+        .nav-links a { 
+            color:#cbd5e1; 
+            text-decoration:none; 
+            margin-left:2.2rem; 
+            font-weight:500; 
+            transition:color 0.3s; 
+        }
+        .nav-links a:hover, .nav-links a.active { color:#60a5fa; }
+
+        .hero {
+            height:100vh;
+            background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+        }
+        .hero::before {
+            content:''; 
+            position:absolute; 
+            inset:0; 
+            background:linear-gradient(to bottom, rgba(15,23,42,0.65), rgba(30,41,59,0.85));
+        }
+        .hero-content {
+            position:relative; 
+            z-index:2; 
+            max-width:900px; 
+            padding:0 5%;
+        }
+        .hero h1 {
+            font-family:'Playfair Display',serif;
+            font-size:5.2rem;
+            line-height:1.05;
+            margin-bottom:1rem;
+            color:white;
+            text-shadow:0 8px 32px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size:1.55rem;
+            font-weight:300;
+            opacity:0.95;
+        }
+
+        section { padding:120px 5% 80px; max-width:1300px; margin:0 auto; }
+        .destinations-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(360px, 1fr));
+            gap:2.5rem;
+        }
+        .destination-card {
+            background:rgba(30,41,59,0.45);
+            backdrop-filter:blur(20px);
+            border:1px solid rgba(96,165,250,0.18);
+            border-radius:28px;
+            overflow:hidden;
+            transition:all 0.4s ease;
+            box-shadow:0 10px 30px rgba(0,0,0,0.4);
+        }
+        .destination-card:hover {
+            transform:translateY(-15px);
+            box-shadow:0 30px 80px rgba(96,165,250,0.25);
+        }
+        .destination-card img {
+            width:100%;
+            height:260px;
+            object-fit:cover;
+        }
+        .destination-card h2 {
+            font-family:'Playfair Display',serif;
+            font-size:2.1rem;
+            color:#e0f2fe;
+            padding:1.8rem 1.8rem 0.8rem;
+            margin:0;
+        }
+        .destination-card p {
+            padding:0 1.8rem 2rem;
+            color:#cbd5e1;
+            font-size:1.05rem;
+            line-height:1.65;
+        }
+
+        footer {
+            background:rgba(15,23,42,0.9);
+            padding:4rem 5% 2rem;
+            text-align:center;
+            border-top:1px solid rgba(96,165,250,0.1);
+        }
+        footer p { color:#94a3b8; font-size:0.95rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">WanderWorld</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html" class="active">Destinations</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">Profile</a>
+    </div>
+</nav>
+
+<div class="hero" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1920');">
+    <div class="hero-content">
+        <h1>50 Dream Destinations</h1>
+        <p>From hidden gems to iconic wonders — where will your next journey take you?</p>
+    </div>
+</div>
+
+<section>
+    <div class="destinations-grid" id="destinations"></div>
+</section>
+
+<footer>
+    <p>© 2026 WanderWorld • Crafted with wanderlust in Dire Dawa, Ethiopia 🌍</p>
+</footer>
+
+<script>
+const destinations = [
+    { name: "Tokyo, Japan", desc: "Neon-drenched nights explode with energy, quiet temples offer zen escapes, and ramen bowls steam under cherry blossom petals." },
+    { name: "Malé, Maldives", desc: "Overwater villas float on electric-blue lagoons, reef fish dance below your feet, and sunsets melt into liquid gold." },
+    { name: "Paris, France", desc: "Fresh croissants at dawn, the Seine sparkling under golden lights, and the Eiffel Tower twinkling like a giant diamond." },
+    { name: "Rome, Italy", desc: "Ancient ruins whisper history, gelato drips in summer heat, and pasta twirls in hidden piazzas." },
+    { name: "Bali, Indonesia", desc: "Volcanic sunrises over emerald rice terraces, monkeys swinging through temples, and waves crashing like thunder." },
+    { name: "New York, USA", desc: "Skyscrapers pierce the clouds, yellow cabs race through streets, and every corner feels like the start of a movie." },
+    { name: "Cape Town, South Africa", desc: "Table Mountain stands guard, penguins waddle on white beaches, and world-class wines flow in dramatic valleys." },
+    { name: "Dubai, UAE", desc: "Burj Khalifa touches the stars, man-made islands shape the sea, and desert dunes meet mega-malls." },
+    { name: "Santorini, Greece", desc: "White cliffs glow against endless blue, sunsets ignite the caldera, and feta melts over fresh seafood." },
+    { name: "Barcelona, Spain", desc: "Gaudi’s colorful mosaics twist wildly, tapas bars buzz late into the night, and Mediterranean waves kiss golden sand." },
+    { name: "London, UK", desc: "Big Ben chimes over foggy streets, red buses rumble past ancient pubs, and afternoon tea feels timeless." },
+    { name: "Sydney, Australia", desc: "Opera House sails gleam at sunrise, harbor ferries cut turquoise water, and endless beaches stretch forever." },
+    { name: "Bangkok, Thailand", desc: "Street food sizzles under neon, golden temples shimmer, and river boats glide past skyscrapers." },
+    { name: "Istanbul, Turkey", desc: "Minarets rise above bustling bazaars, Turkish delight melts on your tongue, and two continents meet." },
+    { name: "Singapore", desc: "Gardens bloom impossibly high, chili crab steams in hawker centers, and spotless streets hide vibrant culture." },
+    { name: "Rio de Janeiro, Brazil", desc: "Christ the Redeemer watches over samba rhythms, sugarloaf rises from emerald bays, and Copacabana pulses with joy." },
+    { name: "Machu Picchu, Peru", desc: "Ancient stones kiss misty Andean peaks, llamas graze on cloud terraces — pure lost-world magic." },
+    { name: "Petra, Jordan", desc: "Rose-red canyons reveal carved wonders, camels trek through narrow siqs under star-filled skies." },
+    { name: "Cairo, Egypt", desc: "Pyramids stand eternal against desert sun, Nile feluccas sail at dusk, and spices fill chaotic souks." },
+    { name: "Zurich, Switzerland", desc: "Crystal lakes reflect snow-capped Alps, chocolate melts on your tongue, and trains whisk you to fairy tales." },
+    { name: "Amsterdam, Netherlands", desc: "Canals wind past gabled houses, bikes zip everywhere, and tulip fields bloom in rainbow waves." },
+    { name: "Prague, Czech Republic", desc: "Gothic spires pierce fairy-tale skies, beer flows in medieval cellars, and bridges glow golden." },
+    { name: "Vienna, Austria", desc: "Waltzes echo in grand palaces, coffee houses serve sachertorte, and classical music fills the air." },
+    { name: "Seoul, South Korea", desc: "K-pop beats thump in neon districts, ancient palaces hide in modern chaos, and street food explodes with flavor." },
+    { name: "Hong Kong", desc: "Skyscrapers climb steep hills, dim sum steams in bustling markets, and Victoria Peak dazzles at night." },
+    { name: "Kyoto, Japan", desc: "Bamboo groves sway in silence, geishas glide past red torii gates, and autumn leaves set temples ablaze." },
+    { name: "Los Angeles, USA", desc: "Hollywood glamour meets beach vibes, tacos sizzle on food trucks, and Pacific sunsets paint the sky in fire." },
+    { name: "Toronto, Canada", desc: "CN Tower pierces the sky, diverse neighborhoods burst with flavors, and Niagara Falls thunders nearby." },
+    { name: "Reykjavik, Iceland", desc: "Northern Lights dance over lava fields, hot springs steam under midnight sun, and waterfalls roar." },
+    { name: "Hawaii, USA", desc: "Volcanoes glow red at night, waterfalls crash into turquoise bays, and aloha spirit warms every luau." },
+    { name: "Phuket, Thailand", desc: "Limestone cliffs rise from emerald seas, night markets sizzle with pad thai, and beaches glow under full moons." },
+    { name: "Lisbon, Portugal", desc: "Tram cars rattle through hilly streets, pastel de nata crumbles sweetly, and Atlantic sunsets paint everything golden." },
+    { name: "Marrakech, Morocco", desc: "Souks overflow with lanterns and spices, riads hide tranquil courtyards, and desert dunes call nearby." },
+    { name: "Budapest, Hungary", desc: "Danube bridges glow at night, thermal baths steam under stars, and goulash warms winter evenings." },
+    { name: "Berlin, Germany", desc: "Street art covers every wall, currywurst sizzles at markets, and history echoes in every corner." },
+    { name: "Venice, Italy", desc: "Gondolas glide through misty canals, masks sparkle at carnival, and seafood risottos simmer." },
+    { name: "Florence, Italy", desc: "Renaissance masterpieces stun in every museum, leather markets bustle, and Chianti flows in Tuscan hills." },
+    { name: "Monaco", desc: "Yachts crowd the harbor, casinos glitter, and Formula 1 roars through glamorous streets." },
+    { name: "Malta", desc: "Azure lagoons hide in cliffs, ancient temples predate pyramids, and fresh pastizzi crunch." },
+    { name: "Seychelles", desc: "Giant granite boulders frame powdery beaches, rare birds call in jungles, and giant tortoises roam free." },
+    { name: "Fiji", desc: "Coral reefs teem with life, overwater bures sway in breezes, and kava ceremonies welcome you warmly." },
+    { name: "Bora Bora", desc: "Turquoise lagoon encircles jagged peaks, sharks glide under glass floors, and sunsets explode in pink." },
+    { name: "Kenya", desc: "Big Five roam vast savannas, Maasai warriors leap in red robes, and sunrises paint the plains gold." },
+    { name: "Tanzania", desc: "Serengeti migration thunders across horizons, Zanzibar spices scent the air, and Kilimanjaro looms majestic." },
+    { name: "Nepal", desc: "Himalayan peaks pierce clouds, prayer flags flutter in mountain winds, and Kathmandu temples buzz with ancient energy." },
+    { name: "India", desc: "Taj Mahal glows at dawn, street chaat explodes with flavor, and Rajasthan forts rise from desert sands." },
+    { name: "China", desc: "Great Wall snakes over misty hills, neon Shanghai pulses, and dim sum steams in bustling hutongs." },
+    { name: "Norway", desc: "Fjords carve deep into mountains, northern lights swirl overhead, and midnight sun lights endless hikes." },
+    { name: "Sweden", desc: "Archipelagos dot glassy waters, forests glow with autumn berries, and clean Scandinavian bliss surrounds you." },
+    { name: "Finland", desc: "Saunas steam beside frozen lakes, reindeer roam snowy forests, and auroras paint the night sky." }
+];
+
+const container = document.getElementById('destinations');
+
+destinations.forEach(place => {
+    container.innerHTML += `
+    <div class="destination-card">
+        <img src="https://picsum.photos/seed/${encodeURIComponent(place.name)}/600/400" alt="${place.name}">
+        <h2>${place.name}</h2>
+        <p>${place.desc}</p>
+    </div>`;
+});
+</script>
+
+</body>
+</html>

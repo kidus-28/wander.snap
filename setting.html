@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings – WanderWorld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:#0f172a; color:#e2e8f0; }
+        nav {
+            position:fixed; top:0; left:0; right:0;
+            background:rgba(15,23,42,0.85);
+            backdrop-filter:blur(12px);
+            padding:1.2rem 5%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            z-index:1000;
+            border-bottom:1px solid rgba(255,255,255,0.08);
+        }
+        .logo { font-family:'Playfair Display',serif; font-size:1.9rem; color:#60a5fa; font-weight:700; }
+        .nav-links a { color:#cbd5e1; text-decoration:none; margin-left:2.2rem; font-weight:500; transition:color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color:#60a5fa; }
+
+        .hero { height:70vh; background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed; position:relative; display:flex; align-items:center; justify-content:center; text-align:center; }
+        .hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(15,23,42,0.65), rgba(30,41,59,0.85)); }
+        .hero-content { position:relative; z-index:2; max-width:900px; padding:0 5%; }
+        .hero h1 { font-family:'Playfair Display',serif; font-size:4.5rem; color:white; text-shadow:0 8px 32px rgba(0,0,0,0.7); margin-bottom:0.8rem; }
+        .hero p { font-size:1.4rem; font-weight:300; opacity:0.9; }
+
+        .settings-container { max-width:900px; margin:0 auto; padding:100px 5% 80px; }
+        .settings-card {
+            background:rgba(30,41,59,0.45);
+            backdrop-filter:blur(20px);
+            border:1px solid rgba(96,165,250,0.18);
+            border-radius:28px;
+            padding:3rem;
+            box-shadow:0 20px 60px rgba(0,0,0,0.5);
+        }
+        .section-title { font-family:'Playfair Display',serif; font-size:2.4rem; color:#e0f2fe; margin:2.5rem 0 1.5rem; text-align:center; }
+
+        /* Profile Update Section */
+        .profile-edit {
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            gap:1.5rem;
+            margin-bottom:3rem;
+            padding-bottom:2rem;
+            border-bottom:1px solid rgba(96,165,250,0.15);
+        }
+        .avatar-upload {
+            width:160px;
+            height:160px;
+            border-radius:50%;
+            border:4px solid #60a5fa;
+            overflow:hidden;
+            cursor:pointer;
+            position:relative;
+        }
+        .avatar-upload img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+        .avatar-upload input { display:none; }
+        .avatar-upload:hover::after {
+            content:"Click to change photo";
+            position:absolute;
+            inset:0;
+            background:rgba(0,0,0,0.6);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:0.95rem;
+        }
+
+        .name-input {
+            width:100%;
+            max-width:400px;
+            padding:14px 20px;
+            background:rgba(255,255,255,0.08);
+            border:1px solid rgba(96,165,250,0.3);
+            border-radius:16px;
+            color:white;
+            font-size:1.1rem;
+            text-align:center;
+        }
+
+        /* Existing toggles */
+        .setting-item { display:flex; justify-content:space-between; align-items:center; padding:1.5rem 0; border-bottom:1px solid rgba(96,165,250,0.15); }
+        .setting-label { font-size:1.2rem; color:#cbd5e1; }
+        .toggle-switch { position:relative; width:60px; height:32px; }
+        .toggle-switch input { opacity:0; width:0; height:0; }
+        .slider {
+            position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0;
+            background:#334155; transition:.4s; border-radius:34px;
+        }
+        .slider:before {
+            position:absolute; content:""; height:24px; width:24px; left:4px; bottom:4px;
+            background:white; transition:.4s; border-radius:50%;
+        }
+        input:checked + .slider { background:#60a5fa; }
+        input:checked + .slider:before { transform:translateX(28px); }
+
+        .btn-save {
+            display:block;
+            width:100%;
+            padding:18px;
+            background:linear-gradient(90deg,#3b82f6,#60a5fa);
+            color:white;
+            border:none;
+            border-radius:16px;
+            font-size:1.2rem;
+            font-weight:600;
+            cursor:pointer;
+            margin-top:2rem;
+            transition:all 0.4s;
+        }
+        .btn-save:hover { transform:translateY(-4px); box-shadow:0 15px 40px rgba(59,130,246,0.5); }
+
+        footer {
+            background:rgba(15,23,42,0.9);
+            padding:4rem 5% 2rem;
+            text-align:center;
+            border-top:1px solid rgba(96,165,250,0.1);
+        }
+        footer p { color:#94a3b8; font-size:0.95rem; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">WanderWorld</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">Profile</a>
+        <a href="setting.html" class="active">Settings</a>
+    </div>
+</nav>
+
+<div class="hero" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=1920');">
+    <div class="hero-content">
+        <h1>Settings</h1>
+        <p>Customize your WanderWorld experience</p>
+    </div>
+</div>
+
+<div class="settings-container">
+    <div class="settings-card">
+
+        <!-- PROFILE UPDATE SECTION -->
+        <h2 class="section-title">Profile Information</h2>
+        
+        <div class="profile-edit">
+            <!-- Profile Picture -->
+            <label class="avatar-upload" id="avatar-label">
+                <input type="file" id="avatar-input" accept="image/*">
+                <img id="avatar-preview" src="https://picsum.photos/seed/dawit-profile/200/200" alt="Profile Picture">
+            </label>
+
+            <!-- Name -->
+            <input type="text" id="name-input" class="name-input" value="Dawit" placeholder="Your name">
+        </div>
+
+        <button onclick="saveProfile()" class="btn-save">Save Profile Changes</button>
+
+        <h2 class="section-title">Preferences</h2>
+
+        <!-- Existing toggles -->
+        <div class="setting-item">
+            <span class="setting-label">Dark Mode</span>
+            <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-item">
+            <span class="setting-label">Email Notifications</span>
+            <label class="toggle-switch"><input type="checkbox" checked><span class="slider"></span></label>
+        </div>
+        <div class="setting-item">
+            <span class="setting-label">Show Saved Destinations on Home</span>
+            <label class="toggle-switch"><input type="checkbox"><span class="slider"></span></label>
+        </div>
+
+        <button onclick="alert('All settings saved! ✅')" class="btn-save">Save All Settings</button>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 WanderWorld • made by group 5</p>
+</footer>
+
+<script>
+// Load saved data on page load
+function loadProfile() {
+    const savedName = localStorage.getItem('profileName') || 'Dawit';
+    const savedAvatar = localStorage.getItem('profileAvatar');
+    
+    document.getElementById('name-input').value = savedName;
+    if (savedAvatar) document.getElementById('avatar-preview').src = savedAvatar;
+}
+
+// Save profile changes
+function saveProfile() {
+    const newName = document.getElementById('name-input').value.trim();
+    if (newName) localStorage.setItem('profileName', newName);
+
+    alert('Profile updated successfully! ✅\n\n(Changes will also appear on your Profile page)');
+}
+
+// Avatar upload preview + save
+document.getElementById('avatar-input').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+            const preview = document.getElementById('avatar-preview');
+            preview.src = ev.target.result;
+            localStorage.setItem('profileAvatar', ev.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+window.onload = loadProfile;
+</script>
+
+</body>
+</html>
