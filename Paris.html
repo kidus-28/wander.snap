@@ -3,277 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paris: Romance in Every Street Corner – WanderWorld</title>
+    <title>Paris – Wander Snap</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { 
-            font-family:'Inter',sans-serif; 
-            background:#0f172a; 
-            color:#e2e8f0; 
-        }
-        nav {
-            position:fixed; top:0; left:0; right:0;
-            background:rgba(15,23,42,0.85);
-            backdrop-filter:blur(12px);
-            padding:1.2rem 5%;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            z-index:1000;
-            border-bottom:1px solid rgba(255,255,255,0.08);
-        }
-        .logo { 
-            font-family:'Playfair Display',serif; 
-            font-size:1.9rem; 
-            color:#60a5fa; 
-            font-weight:700; 
-        }
-        .nav-links a { 
-            color:#cbd5e1; 
-            text-decoration:none; 
-            margin-left:2.2rem; 
-            font-weight:500; 
-            transition:color 0.3s; 
-        }
-        .nav-links a:hover, .nav-links a.active { color:#60a5fa; }
-
-        .hero {
-            height:100vh;
-            background:url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
-            position:relative;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-        }
-        .hero::before {
-            content:''; 
-            position:absolute; 
-            inset:0; 
-            background:linear-gradient(to bottom, rgba(15,23,42,0.65), rgba(30,41,59,0.85));
-        }
-        .hero-content {
-            position:relative; 
-            z-index:2; 
-            max-width:900px; 
-            padding:0 5%;
-        }
-        .hero h1 {
-            font-family:'Playfair Display',serif;
-            font-size:5rem;
-            line-height:1.05;
-            margin-bottom:1rem;
-            color:white;
-            text-shadow:0 8px 32px rgba(0,0,0,0.7);
-        }
-        .hero p {
-            font-size:1.55rem;
-            font-weight:300;
-            opacity:0.95;
-        }
-
-        .story-container {
-            max-width:1100px;
-            margin:0 auto;
-            padding:100px 5% 80px;
-        }
-        .featured-image-top {
-            width:100%;
-            height:520px;
-            object-fit:cover;
-            border-radius:28px;
-            box-shadow:0 30px 80px rgba(0,0,0,0.6);
-            margin-bottom:3rem;
-        }
-        .blog-article {
-            background:rgba(30,41,59,0.45);
-            backdrop-filter:blur(20px);
-            border:1px solid rgba(96,165,250,0.18);
-            border-radius:28px;
-            padding:3.5rem 4rem;
-            box-shadow:0 20px 60px rgba(0,0,0,0.5);
-        }
-        .story-title {
-            font-family:'Playfair Display',serif;
-            font-size:3.4rem;
-            line-height:1.15;
-            color:#e0f2fe;
-            margin-bottom:1.5rem;
-            text-align:center;
-        }
-        .lead-paragraph {
-            font-size:1.35rem;
-            line-height:1.8;
-            color:#94a3b8;
-            text-align:center;
-            max-width:800px;
-            margin:0 auto 3rem;
-        }
-        .story-content p {
-            font-size:1.15rem;
-            line-height:1.85;
-            margin-bottom:2rem;
-            color:#cbd5e1;
-        }
-        .pull-quote {
-            font-family:'Playfair Display',serif;
-            font-size:1.65rem;
-            font-style:italic;
-            color:#bae6fd;
-            text-align:center;
-            border-left:6px solid #60a5fa;
-            padding:2rem 3rem;
-            margin:3rem 0;
-            background:rgba(96,165,250,0.08);
-            border-radius:16px;
-        }
-        .tip-box {
-            background:rgba(96,165,250,0.1);
-            border:1px solid #60a5fa;
-            border-radius:20px;
-            padding:2rem;
-            margin:3rem 0;
-            font-size:1.1rem;
-        }
-        .story-actions {
-            display:flex;
-            gap:1.5rem;
-            justify-content:center;
-            margin-top:4rem;
-            flex-wrap:wrap;
-        }
-        .btn {
-            padding:16px 32px;
-            background:linear-gradient(90deg,#3b82f6,#60a5fa);
-            color:white;
-            border:none;
-            border-radius:16px;
-            font-size:1.1rem;
-            font-weight:600;
-            text-decoration:none;
-            transition:all 0.4s;
-        }
-        .btn:hover {
-            transform:translateY(-4px);
-            box-shadow:0 15px 40px rgba(59,130,246,0.5);
-        }
-        .back-btn {
-            background:rgba(255,255,255,0.1);
-            border:1px solid rgba(255,255,255,0.3);
-        }
-
-        footer {
-            background:rgba(15,23,42,0.9);
-            padding:4rem 5% 2rem;
-            text-align:center;
-            border-top:1px solid rgba(96,165,250,0.1);
-        }
-        footer p { color:#94a3b8; font-size:0.95rem; }
+        .story-hero { height:100vh; background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.85)), url('https://picsum.photos/seed/paris-eiffel/1920/1080') center/cover; }
+        .story-card { background:rgba(30,41,59,0.85); backdrop-filter:blur(28px); border:1px solid rgba(96,165,250,0.35); border-radius:32px; padding:3.5rem; margin:-90px auto 80px; max-width:1100px; box-shadow:0 40px 100px rgba(0,0,0,0.7); }
+        .moment-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.2rem; margin:3rem 0; }
+        .moment { border-radius:20px; overflow:hidden; transition:transform 0.4s; }
+        .moment:hover { transform:scale(1.05); }
+        .pull-quote { font-family:'Playfair Display',serif; font-size:2.15rem; font-style:italic; color:#e0f2fe; border-left:7px solid #60a5fa; padding-left:2.5rem; margin:3rem 0; }
+        .tip-box { background:rgba(96,165,250,0.12); border-left:6px solid #60a5fa; padding:2rem; border-radius:20px; }
     </style>
 </head>
 <body>
 
-<nav style="position:fixed; top:0; left:0; right:0; background:rgba(15,23,42,0.95); backdrop-filter:blur(12px); padding:1.2rem 5%; display:flex; justify-content:space-between; align-items:center; z-index:1000;">
-
-    <!-- Logo -->
-    <div style="font-family:'Dancing Script', cursive; font-size:2.85rem; color:#60a5fa; font-weight:700;">
-        Wander Snap
-    </div>
-
-    <!-- Main Links -->
-    <div style="display:flex; gap:2.5rem; font-size:1.05rem; font-weight:500;">
-        <a href="index.html" style="color:#cbd5e1; text-decoration:none;">Home</a>
-        <a href="destinations.html" style="color:#cbd5e1; text-decoration:none;">Explore</a>
-        <a href="gallery.html" style="color:#cbd5e1; text-decoration:none;">Gallery</a>
-        <a href="about.html" style="color:#cbd5e1; text-decoration:none;">About</a>
-        <a href="contact.html" style="color:#cbd5e1; text-decoration:none;">Contact</a>
-        
-        <!-- Profile with Dropdown -->
-        <div class="profile-menu" style="position:relative;">
-            <a href="#" onclick="toggleDropdown(event)" style="color:#60a5fa; text-decoration:none; font-weight:600; display:flex; align-items:center; gap:6px;">
-                Profile ▼
-            </a>
-            
-            <!-- Dropdown Menu -->
-            <div id="dropdown" style="display:none; position:absolute; top:100%; right:0; background:rgba(30,41,59,0.95); backdrop-filter:blur(12px); border-radius:12px; min-width:180px; box-shadow:0 10px 30px rgba(0,0,0,0.5); padding:12px 0; z-index:2000;">
-                <a href="profile.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">My Profile</a>
-                <a href="setting.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">Settings</a>
-                <a href="login.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">Login</a>
-                <a href="admin-dashboard.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">Admin</a>
-            </div>
-        </div>
+<nav>
+    <div class="logo">Wander Snap</div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Explore</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">Profile</a>
     </div>
 </nav>
 
-<div class="hero" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=1920');">
-    <div class="hero-content">
+<div class="story-hero">
+    <div class="hero-content" style="text-align:center;">
         <h1>Paris</h1>
         <p>Where Every Street Corner Falls in Love with You</p>
     </div>
 </div>
 
-<div class="story-container">
-    <img src="https://picsum.photos/seed/paris-eiffel-sunset-seine/1400/620" alt="Eiffel Tower glowing at sunset over the Seine" class="featured-image-top">
-    
-    <article class="blog-article">
-        <h1 class="story-title">Paris: Where Every Street Corner Falls in Love with You</h1>
-        
-        <p class="lead-paragraph">
-            Paris doesn’t greet you — it seduces you. Croissants still warm from the oven, the Seine sparkling under golden lights, the Eiffel Tower twinkling like it’s flirting just with you.
-        </p>
+<div class="story-card">
+    <img src="https://picsum.photos/seed/paris-eiffel-night/1400/680" alt="Paris" style="width:100%; border-radius:24px; margin-bottom:2.5rem;">
 
-        <div class="story-content">
-            <p>First morning: café au lait and flaky croissant at a zinc counter, butter melting everywhere. Then along the Seine — bookstalls, lovers kissing on bridges, Notre-Dame rising majestic and radiant once more.</p>
-            
-            <p>Eiffel at golden hour: iron glowing like molten metal, city sprawling below in soft haze. Climb for views that steal your breath. At night it sparkles on the hour — a romantic countdown you never tire of.</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:3rem; color:#e0f2fe;">The City That Steals Hearts</h2>
 
-            <blockquote class="pull-quote">
-                "Paris makes you feel beautiful — because it believes you already are."
-            </blockquote>
+    <p style="font-size:1.18rem; line-height:1.85;">The Eiffel Tower sparkles at dusk. The Seine flows quietly under golden bridges. Cobblestone streets echo with laughter and the scent of fresh croissants. Paris doesn’t just show you beauty — it awakens the romantic inside you.</p>
 
-            <p>Art overload: Louvre’s endless wonders, Orsay’s glowing Impressionists, Centre Pompidou’s bold modern pulse. Montmartre: Sacré-Cœur panorama, artists sketching, Moulin Rouge energy buzzing below.</p>
+    <div class="pull-quote">"You don’t fall in love with Paris. Paris falls in love with you — slowly, deeply, and forever."</div>
 
-            <p>Picnic perfection: baguette, brie, fresh strawberries, chilled rosé — spread on the grass in Luxembourg Gardens or along the Canal Saint-Martin. Simple, timeless joy.</p>
+    <p style="font-size:1.18rem; line-height:1.85;">Wander through Montmartre at sunrise. Sip café au lait while watching the world pass by. Get lost in the Louvre. End the day with a sunset cruise on the Seine. Every moment feels like a movie scene written just for you.</p>
 
-            <p>Food is poetry: escargot sizzling in garlic butter, duck confit melting off the bone, crème brûlée cracking under your spoon. Cafés for people-watching, hidden bistros for late-night Bordeaux.</p>
+    <div class="pull-quote">"In Paris, even the ordinary becomes extraordinary."</div>
 
-            <p>Nightlife hums: jazz in smoky clubs, Seine cruises under lit monuments, bars in Le Marais pulsing with life. Paris dreams vividly — and invites you to dream with it.</p>
+    <div class="moment-grid">
+        <img src="https://picsum.photos/seed/paris-1/600/400" class="moment" alt="Eiffel">
+        <img src="https://picsum.photos/seed/paris-2/600/400" class="moment" alt="Seine">
+        <img src="https://picsum.photos/seed/paris-3/600/400" class="moment" alt="Louvre">
+        <img src="https://picsum.photos/seed/paris-4/600/400" class="moment" alt="Café">
+    </div>
 
-            <div class="tip-box">
-                <strong>WanderWorld Pro Tip:</strong> Get a Paris Visite pass for unlimited metro rides, walk every neighborhood obsessively, book Eiffel Tower tickets in advance, and always follow your nose to the smallest local boulangerie — their croissants are life-changing.
-            </div>
+    <div class="tip-box">
+        <strong>Pro Tips for Paris:</strong><br>
+        • Walk everywhere — the best stories happen on foot<br>
+        • Spring for blooming gardens, autumn for fewer crowds<br>
+        • Buy a Paris Museum Pass to skip lines
+    </div>
 
-            <p>Paris doesn’t just show you romance. It awakens it inside you. Leave a little more in love — with the city, with life, with yourself.</p>
-        </div>
-
-        <div class="story-actions">
-            <a href="index.html" class="btn back-btn">← Back to Home</a>
-            <a href="destinations.html" class="btn">Explore More Destinations</a>
-        </div>
-    </article>
+    <div style="display:flex; gap:20px; margin-top:3rem;">
+        <a href="index.html" style="flex:1; text-align:center; padding:16px; background:#60a5fa; color:white; border-radius:16px; text-decoration:none;">← Back to Home</a>
+        <a href="destinations.html" style="flex:1; text-align:center; padding:16px; border:2px solid #60a5fa; color:white; border-radius:16px; text-decoration:none;">More Dream Destinations</a>
+    </div>
 </div>
 
-<footer>
-    <p>© 2026 WanderWorld • Crafted with wanderlust in Dire Dawa, Ethiopia 🌍</p>
+<footer style="background:#0a1428; padding:60px 5% 30px; color:#94a3b8; text-align:center;">
+    © 2026 Wander Snap • Made with wanderlust in Dire Dawa, Ethiopia 🌍
 </footer>
-
-<script>
-function toggleDropdown(e) {
-    e.preventDefault();
-    const dropdown = document.getElementById('dropdown');
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-// Close dropdown when clicking anywhere else
-document.addEventListener('click', function(e) {
-    const dropdown = document.getElementById('dropdown');
-    if (!e.target.closest('.profile-menu')) {
-        dropdown.style.display = 'none';
-    }
-});
-</script>
-
 </body>
 </html>
