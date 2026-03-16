@@ -34,19 +34,35 @@
 </head>
 <body>
 
-<nav>
-    <div style="font-family:'Dancing Script', cursive; font-size:2.85rem; color:#60a5fa; font-weight:700; letter-spacing:1px;">
+<nav style="position:fixed; top:0; left:0; right:0; background:rgba(15,23,42,0.95); backdrop-filter:blur(12px); padding:1.2rem 5%; display:flex; justify-content:space-between; align-items:center; z-index:1000;">
+
+    <!-- Logo -->
+    <div style="font-family:'Dancing Script', cursive; font-size:2.85rem; color:#60a5fa; font-weight:700;">
         Wander Snap
     </div>
-    <div class="nav-links">
-        <a href="/index.html">Home</a>
-        <a href="/explore.html">Explore</a>
-        <a href="/about.html">About</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/profile.html">Profile</a>
-        <a href="/setting.html">Settings</a>
-        <a href="/login.html">Login</a>
-        <a href="/admin-dashboard.html">Admin</a>
+
+    <!-- Main Links -->
+    <div style="display:flex; gap:2.5rem; font-size:1.05rem; font-weight:500;">
+        <a href="index.html" style="color:#cbd5e1; text-decoration:none;">Home</a>
+        <a href="destinations.html" style="color:#cbd5e1; text-decoration:none;">Explore</a>
+        <a href="gallery.html" style="color:#cbd5e1; text-decoration:none;">Gallery</a>
+        <a href="about.html" style="color:#cbd5e1; text-decoration:none;">About</a>
+        <a href="contact.html" style="color:#cbd5e1; text-decoration:none;">Contact</a>
+        
+        <!-- Profile with Dropdown -->
+        <div class="profile-menu" style="position:relative;">
+            <a href="#" onclick="toggleDropdown(event)" style="color:#60a5fa; text-decoration:none; font-weight:600; display:flex; align-items:center; gap:6px;">
+                Profile ▼
+            </a>
+            
+            <!-- Dropdown Menu -->
+            <div id="dropdown" style="display:none; position:absolute; top:100%; right:0; background:rgba(30,41,59,0.95); backdrop-filter:blur(12px); border-radius:12px; min-width:180px; box-shadow:0 10px 30px rgba(0,0,0,0.5); padding:12px 0; z-index:2000;">
+                <a href="profile.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">My Profile</a>
+                <a href="setting.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">Settings</a>
+                <a href="login.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">Login</a>
+                <a href="admin-dashboard.html" style="display:block; padding:12px 20px; color:#cbd5e1; text-decoration:none;">Admin</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -54,27 +70,44 @@
     <img src="https://picsum.photos/seed/japan/600/300" alt="Japan">
     <h2>Japan</h2>
     <p>Fresh air, breathtaking views, and peaceful moments in the mountains.</p>
-    <a href="japan.html" class="btn" style="display:inline-block; padding:12px 28px; background:#60a5fa; color:white; border-radius:12px; text-decoration:none;">Read More →</a>
+    <a href="japan.html" class="read-more-btn">Read More →</a>
 </div>
 
 <div class="post">
     <img src="https://picsum.photos/seed/maldives/600/300" alt="Maldives">
     <h2>Maldives</h2>
     <p>Golden sand, crystal water, and unforgettable sunsets.</p>
-    <a href="maldives.html" class="btn" style="display:inline-block; padding:12px 28px; background:#60a5fa; color:white; border-radius:12px; text-decoration:none;">Read More →</a>
+    <a href="maldives.html" class="read-more-btn">Read More →</a>
 </div>
 
 <div class="post">
     <img src="https://picsum.photos/seed/paris/600/300" alt="Paris">
     <h2>Paris</h2>
     <p>Experience the city of love with its iconic landmarks and charming streets.</p>
-    <a href="paris.html" class="btn" style="display:inline-block; padding:12px 28px; background:#60a5fa; color:white; border-radius:12px; text-decoration:none;">Read More →</a>
-</div>
+    <a href="paris.html" class="read-more-btn">Read More →</a>
+</div> 
+
 </section>
 
 <footer>
     <p>© 2026 WanderWorld . made by group 5</p>
 </footer>
+
+<script>
+function toggleDropdown(e) {
+    e.preventDefault();
+    const dropdown = document.getElementById('dropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close dropdown when clicking anywhere else
+document.addEventListener('click', function(e) {
+    const dropdown = document.getElementById('dropdown');
+    if (!e.target.closest('.profile-menu')) {
+        dropdown.style.display = 'none';
+    }
+});
+</script>
 
 </body>
 </html>
